@@ -6,7 +6,7 @@
 /.python-version
 /figures
 /data
-
+__pycache__/
 
 
 
