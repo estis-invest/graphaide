@@ -7,6 +7,6 @@
 /figures
 /data
 __pycache__/
-
+*.egg-info/
 
 
