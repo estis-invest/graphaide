@@ -1,8 +1,10 @@
 from typing import Protocol, runtime_checkable
-from graphaide.interfaces.cli_context import CommandContext
+from graphaide.context.base_context import CommandContext
 
 @runtime_checkable
 class CLICommand(Protocol):
+    VALID_FLAGS: set[str]
+
     @classmethod
     def name(cls) -> str: ...
 
@@ -10,7 +12,10 @@ class CLICommand(Protocol):
     def description(cls) -> str: ...
 
     @classmethod
-    def help(self) -> str: ...
+    def help(cls) -> str: ...
+
+    @classmethod
+    def validate(cls, ctx:CommandContext) -> None: ...
 
     def run(self, ctx: CommandContext) -> None: ...
 
