@@ -24,7 +24,8 @@ def main():
     ctx = CommandContext(options)
 
     for cmd in cmd_lib:
-        print(cmd().run(ctx))
+        if cmd.name() == cli_command:
+            print(cmd().run(ctx))
 
 
 if __name__ == "__main__":
