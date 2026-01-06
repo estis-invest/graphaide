@@ -4,5 +4,11 @@ from .base_context import CommandContext
 @dataclass
 class DefaultContext(CommandContext):
     """The default context provider for all commands"""
-    pass
+
+    _FLAG_ALIASES = {
+        "-h": "--help",
+        "-v": "--verbose",
+        "-i": "--interactive",
+        "--dry-run": "--dry-run"
+    }
 

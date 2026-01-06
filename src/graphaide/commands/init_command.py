@@ -1,5 +1,5 @@
 from pathlib import Path
-from graphaide.context.default import DefaultContext as CommandContext
+from graphaide.context.default_context import DefaultContext as CommandContext
 from textwrap import dedent
 
 PROJECT_DIRS = {

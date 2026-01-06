@@ -1,6 +1,6 @@
 import sys
 from graphaide.commands import COMMANDS as cmd_lib
-from graphaide.context.default import DefaultContext
+from graphaide.context import get_context
 
 APP_NAME = "graphaide"
 
@@ -30,7 +30,8 @@ def main():
 
 
     options = sys.argv[2:]
-    ctx = DefaultContext(options)
+    ContextClass = get_context(cli_command)
+    ctx = ContextClass(options)
 
     try:
         cmd.validate(ctx)

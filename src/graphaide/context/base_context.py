@@ -1,22 +1,23 @@
 from dataclasses import dataclass
 from functools import cached_property
+from typing import ClassVar
 
 @dataclass
 class CommandContext:
     args: list[str]
 
-    FLAG_ALIASES = {
-        "-h": "--help",
-        "-v": "--verbose",
-        "-i": "--interactive"
-    }
+    _FLAG_ALIASES : ClassVar[dict[str, str]] = None
+
 
     @cached_property
     def flags(self) -> set[str]:
         return {
             self.FLAG_ALIASES.get(arg, arg) for arg in self.args if arg.startswith("-")
-
         }
+
+    @property
+    def FLAG_ALIASES(self) -> dict[str, str]:
+        return dict(self._FLAG_ALIASES or {})
 
     @property
     def is_help(self) -> bool:
