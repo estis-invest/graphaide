@@ -5,8 +5,12 @@ from .default_context import DefaultContext
 class DataContext(DefaultContext):
     _FLAG_ALIASES = {
         **DefaultContext._FLAG_ALIASES,
-        "-t": "tree",
-        "-s": "--source-file",
-        "-c": "--clean",
+        "-t": "--tree",
+        "-d": "--source-file",
+        "-c": "--drop",
         "-o": "--output-file"
     }
+    
+    @property
+    def is_tree(self) -> bool:
+        return "--tree" in self.flags
