@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from .default_context import DefaultContext
 
+
 @dataclass
 class DataContext(DefaultContext):
     _FLAG_ALIASES = {
@@ -8,9 +9,9 @@ class DataContext(DefaultContext):
         "-t": "--tree",
         "-d": "--source-file",
         "-c": "--drop",
-        "-o": "--output-file"
+        "-o": "--output-file",
     }
-    
+
     @property
     def is_tree(self) -> bool:
         return "--tree" in self.flags

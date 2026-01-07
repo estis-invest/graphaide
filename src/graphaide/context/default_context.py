@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from .base_context import CommandContext
 
+
 @dataclass
 class DefaultContext(CommandContext):
     """The default context provider for all commands"""
@@ -9,6 +10,5 @@ class DefaultContext(CommandContext):
         "-h": "--help",
         "-v": "--verbose",
         "-i": "--interactive",
-        "--dry-run": "--dry-run"
+        "--dry-run": "--dry-run",
     }
-

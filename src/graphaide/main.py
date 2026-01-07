@@ -4,7 +4,8 @@ from graphaide.context import get_context
 
 APP_NAME = "graphaide"
 
-def welcome_message(sep_char:str ="#", row_width:int = 80) -> None:
+
+def welcome_message(sep_char: str = "#", row_width: int = 80) -> None:
     print(f"{sep_char}" * row_width)
     print(f"Welcome to {APP_NAME.title()}!")
     print(f"{sep_char}" * row_width)
@@ -28,7 +29,6 @@ def main():
         print("Please type:\n\n\t'graphaide --help'\n\n to see available commands")
         return
 
-
     options = sys.argv[2:]
     ContextClass = get_context(cli_command)
     ctx = ContextClass(options)
@@ -41,6 +41,7 @@ def main():
         return
     else:
         cmd().run(ctx)
+
 
 if __name__ == "__main__":
     main()

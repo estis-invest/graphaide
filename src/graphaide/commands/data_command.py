@@ -6,13 +6,7 @@ DIRECTORY = Path("data")
 
 
 class DataCommand:
-    VALID_FLAGS = {
-        "--help", 
-        "--dry-run", 
-        "--verbose", 
-        "--interactive", 
-        "--tree"
-    }
+    VALID_FLAGS = {"--help", "--dry-run", "--verbose", "--interactive", "--tree"}
 
     @classmethod
     def name(cls) -> str:
@@ -24,31 +18,37 @@ class DataCommand:
 
     @classmethod
     def help(cls) -> str:
-        return dedent("""
-        The 'data' command reads and write data files, also light processing like droping column(s) and summary statistics.
+        return dedent(
+            """
+        The 'data' command reads and write data files, also light processing
+        like droping column(s) and summary statistics.
 
-        graphaide data                          #  Does not nothing.
-        graphaide data --help/ -h               #  Display help and additional information. 
+        graphaide data                          #  See check that directory exists.
+        graphaide data --help/ -h               #  Display help and additional information.
         graphaide data --dry-run                #  Runs command without directory creation.
         graphaide data --verbose/ -v            #  Not implemented.
         graphaide data --interactive/ -i        #  Not implemented.
         graphaide data --tree/ -t               # List all available data files in 'data' directory.
 
 
-        """)
+        """
+        )
 
     @classmethod
-    def validate(cls, ctx:CommandContext) -> None:
+    def validate(cls, ctx: CommandContext) -> None:
         unknown = ctx.flags - cls.VALID_FLAGS
         if unknown:
-            raise ValueError(f"Unknown flag(s) for 'graphaide {cls.name()}': {', '.join(sorted(unknown))}")
+            raise ValueError(
+                f"Unknown flag(s) for 'graphaide {
+                             cls.name()}': {', '.join(sorted(unknown))}"
+            )
         return
 
     def print_tree(self) -> None:
         data_dir = Path(Path.cwd()) / Path("data")
         indent_width = 4
         for path in sorted(data_dir.rglob("*")):
-            depth = (len(path.relative_to(data_dir).parts) -1) * indent_width
+            depth = (len(path.relative_to(data_dir).parts) - 1) * indent_width
             sep_char = "-" if depth <= 0 else "*"
             indent = " " * depth
             if path.is_dir():
@@ -56,7 +56,7 @@ class DataCommand:
             else:
                 print(f"{indent} {sep_char} {path.name}")
 
-    def run(self, ctx:CommandContext) -> None:
+    def run(self, ctx: CommandContext) -> None:
         if ctx.is_help:
             print(DataCommand.help())
             return
@@ -64,4 +64,17 @@ class DataCommand:
         if ctx.is_tree:
             self.print_tree()
             return
-        
+
+        if ctx.is_dry_run:
+            print(f"\nCheck that {DIRECTORY} exists in project")
+            return
+        else:
+            if not DIRECTORY.exists():
+                print(
+                    f"Please run: 'graphaide init' to create data directory at: {
+                      DIRECTORY}"
+                )
+                return
+            print(
+                "\nCommand 'graphaide data' is available to see option run:\n\t graphaide data --help/-h\n"
+            )

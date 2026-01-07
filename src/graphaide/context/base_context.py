@@ -2,12 +2,11 @@ from dataclasses import dataclass
 from functools import cached_property
 from typing import ClassVar
 
+
 @dataclass
 class CommandContext:
     args: list[str]
-
-    _FLAG_ALIASES : ClassVar[dict[str, str]] = None
-
+    _FLAG_ALIASES: ClassVar[dict[str, str]] = None
 
     @cached_property
     def flags(self) -> set[str]:
