@@ -38,11 +38,10 @@ class DataCommand:
     def validate(cls, ctx: CommandContext) -> None:
         unknown = ctx.flags - cls.VALID_FLAGS
         if unknown:
+            unknown_str = ", ".join(sorted(unknown))
             raise ValueError(
-                f"Unknown flag(s) for 'graphaide {
-                             cls.name()}': {', '.join(sorted(unknown))}"
+                f"Unknown flag(s) for 'graphaide {cls.name()}': {unknown_str}"
             )
-        return
 
     def print_tree(self) -> None:
         data_dir = Path(Path.cwd()) / Path("data")
@@ -69,8 +68,7 @@ class DataCommand:
         else:
             if not DIRECTORY.exists():
                 print(
-                    f"Please run: 'graphaide init' to create data directory at: {
-                      DIRECTORY}"
+                    f"Please run: 'graphaide init' to create data directory at: {DIRECTORY}"
                 )
                 return
             print(

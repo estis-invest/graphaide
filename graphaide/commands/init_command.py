@@ -23,7 +23,7 @@ class InitCommand:
         The 'init' command intializes the project structure for saving data.
 
         graphaide init                          #  Run command and creates directoies 'data' and 'figures'.
-        graphaide init --help/ -h               #  Display help and additional information. 
+        graphaide init --help/ -h               #  Display help and additional information.
         graphaide init --dry-run                #  Runs command without directory creation.
         graphaide init --verbose/ -v            #  Not implemented.
         graphaide init --interactive/ -i        #  Not implemented.
