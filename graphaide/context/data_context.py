@@ -7,8 +7,8 @@ class DataContext(DefaultContext):
     _FLAG_ALIASES = {
         **DefaultContext._FLAG_ALIASES,
         "-t": "--tree",
-        "-d": "--source-file",
-        "-c": "--drop",
+        "-r": "--read-file",
+        "-d": "--drop",
         "-o": "--output-file",
     }
 

@@ -63,11 +63,9 @@ class DataCommand:
 
         if ctx.is_tree:
             self.print_tree()
-            return
 
         if ctx.is_dry_run:
             print(f"\nCheck that {DIRECTORY} exists in project")
-            return
         else:
             if not DIRECTORY.exists():
                 print(

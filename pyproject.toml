@@ -1,3 +1,29 @@
+# [project]
+# name = "graphaide"
+# version = "0.1.0"
+# description = "Data processor and visualizer"
+# readme = "README.md"
+# requires-python = ">=3.12"
+# dependencies = [
+#     "matplotlib>=3.10.8",
+#     "numpy!=2.4.0",
+#     "pandas>=2.3.3",
+#     "pyside6>=6.10.1",
+# ]
+#
+# [dependency-groups]
+# dev = [
+#     "black>=25.12.0",
+#     "jupyter>=1.1.1",
+#     "pytest>=9.0.2",
+# ]
+#
+# [project.scripts]
+# graphaide = "graphaide.main:main"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "graphaide"
 version = "0.1.0"
@@ -11,6 +37,9 @@ dependencies = [
     "pyside6>=6.10.1",
 ]
 
+[project.scripts]
+graphaide = "graphaide.main:main"
+
 [dependency-groups]
 dev = [
     "black>=25.12.0",
@@ -18,6 +47,6 @@ dev = [
     "pytest>=9.0.2",
 ]
 
-[project.scripts]
-graphaide = "graphaide.main:main"
+[tool.uv]
+package = true
 
