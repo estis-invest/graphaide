@@ -6,7 +6,7 @@ from typing import ClassVar
 @dataclass
 class CommandContext:
     args: list[str]
-    _FLAG_ALIASES: ClassVar[dict[str, str]] = None
+    _FLAG_ALIASES: ClassVar[dict[str, str] | None] = None
 
     @cached_property
     def flags(self) -> set[str]:

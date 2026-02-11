@@ -6,7 +6,7 @@ from . import __path__ as COMMANDS_PATH
 
 COMMANDS = []
 
-for _, name, _ in pkgutil.iter_modules(COMMANDS_PATH):
+for _, name, _ispkg in pkgutil.iter_modules(COMMANDS_PATH):
     try:
         module = importlib.import_module(f".{name}", package=__name__)
     except ModuleNotFoundError as e:
