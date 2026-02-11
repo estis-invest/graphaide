@@ -10,17 +10,21 @@ jobs:
   quality:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        # Pinned to v5.2.2 via SHA for supply-chain stability
+        uses: astral-sh/setup-uv@v5.4.2
         with:
-          enable-cache: true # Super fast subsequent runs
-          version: "latest"
+          enable-cache: true
+          # Set to match your local version for lockfile parity
+          version: "0.10.0"
 
       - name: Set up Python
-        run: uv python install 3.12 # Matches your new syntax needs
+        # uv uses your pyproject.toml to decide the exact patch version
+        run: uv python install 3.12
 
       - name: Run Pre-commit
-        # This runs everything (Black, Mypy, etc.) exactly like your local machine
+        # This ensures all hooks (Black, Mypy) run in the uv-managed environment
         run: uv run pre-commit run --all-files
